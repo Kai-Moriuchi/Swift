@@ -4,9 +4,10 @@ Swiftを触ってみた
 
 ## 環境
 
-言語：Swift(5.4.2)
-
-フレームワーク：SwiftUI
+- macOS Big Sur(11.2.3)
+- Xcode(12.5.1)
+- Swift(5.4.2)
+- SwiftUI
 
 ## 参考サイト
 
