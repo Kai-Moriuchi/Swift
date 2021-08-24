@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
+// Codable:JSONを自分の好きな型に変換し，アクセスが容易になる
 struct Landmark: Hashable, Codable {
     var id: Int
     var name: String
