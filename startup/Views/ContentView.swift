@@ -22,10 +22,10 @@ struct ContentView: View {
                 Text("Turtle Rock")
                     .font(.title)
                 HStack {
-                    Text("北海道 函館 昭和公園")
+                    Text("Joshua Tree National Park")
                         .font(.subheadline)
                     Spacer()
-                    Text("日本")
+                    Text("California")
                         .font(.subheadline)
                 }
                 .font(.subheadline)
