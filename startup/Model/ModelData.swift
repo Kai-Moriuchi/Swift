@@ -6,6 +6,12 @@
 //
 
 import Foundation
+import Combine
+
+//@Publishedをつけると監視対象となり，変更があった場合はViewが自動的に更新される
+final class ModelData: ObservableObject {
+    @Published var landmarks: [Landmark] = load("landmarkData.json")
+}
 
 var landmarks: [Landmark] = load("landmarkData.json")
 
