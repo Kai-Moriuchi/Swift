@@ -18,6 +18,11 @@ struct LandmarkRow: View {
             Text(landmark.name)
             
             Spacer()//幅いっぱいに表示する際にいい感じにスペースを開けてくれる
+            
+            if landmark.isFavorite {
+                Image(systemName: "star.fill")//systemName:XXでアイコンを表示できる
+                    .foregroundColor(.yellow)
+            }
         }
     }
 }
