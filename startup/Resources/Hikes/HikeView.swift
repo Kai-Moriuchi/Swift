@@ -7,6 +7,18 @@ A view displaying information about a hike, including an elevation graph.
 
 import SwiftUI
 
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        //出てくる時
+        let insertion = AnyTransition.move(edge: .trailing)
+            .combined(with: .opacity)
+        //消える時
+        let removal = AnyTransition.scale
+            .combined(with: .opacity)
+        return .asymmetric(insertion: insertion, removal: removal)
+    }
+}
+
 struct HikeView: View {
     var hike: Hike
     @State private var showDetail = false
@@ -41,6 +53,7 @@ struct HikeView: View {
 
             if showDetail {
                 HikeDetail(hike: hike)
+                    .transition(.moveAndFade)
             }
         }
     }
