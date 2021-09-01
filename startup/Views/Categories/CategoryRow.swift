@@ -24,6 +24,7 @@ struct CategoryRow: View {
                         NavigationLink(destination: LandmarkDetail(landmark: landmark)) {
                             CategoryItem(landmark: landmark)
                         }
+
                     }
                 }
             }
