@@ -13,9 +13,11 @@ struct PageView<Page: View>: View {
 
     var body: some View {
         //@Stateとして保存されている値へのバインディングを作成する際には、$構文を使用する
-        VStack {
+        ZStack(alignment: .bottomTrailing) {
             PageViewController(pages: pages, currentPage: $currentPage)
-            Text("Current Page: \(currentPage)")
+            PageControl(numberOfPages: pages.count, currentPage: $currentPage)
+                .frame(width: CGFloat(pages.count * 18))
+                .padding(.trailing)
         }
     }
 }
