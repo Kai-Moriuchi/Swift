@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LandmarkDetail: View {
     @EnvironmentObject var modelData: ModelData
@@ -17,29 +18,44 @@ struct LandmarkDetail: View {
 
     var body: some View {
         ScrollView {
-            MapView(coordinate: landmark.locationCoordinate)
-                .ignoresSafeArea(edges: .top)
-                .frame(height: 300)
-
-            CircleImage(image: landmark.image)
-                .offset(y: -130)
-                .padding(.bottom, -130)
-
-            VStack(alignment: .leading) {
-                HStack {
-                    Text(landmark.name)
-                        .font(.title)
-                        .foregroundColor(.primary)
-                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+            
+            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
+                MapView(coordinate: landmark.locationCoordinate)
+                    .ignoresSafeArea(edges: .top)
+                    .frame(height: 300)
+                
+                Button("Open in Maps") {
+                    let destination = MKMapItem(placemark: MKPlacemark(coordinate: landmark.locationCoordinate))
+                    destination.name = landmark.name
+                    destination.openInMaps()
                 }
+                .padding()
+            }
+            
+            VStack(alignment: .leading, spacing: 20) {
+                HStack(spacing: 24) {
+                    CircleImage(image: landmark.image.resizable())
+                        .frame(width: 160, height:  160)
 
-                HStack {
-                    Text(landmark.park)
-                    Spacer()
-                    Text(landmark.state)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(landmark.name)
+                                .font(.title)
+                                .foregroundColor(.primary)
+                            FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                                .buttonStyle(PlainButtonStyle())
+                        }
+                        
+                        
+
+                        VStack(alignment: .leading) {
+                            Text(landmark.park)
+                            Text(landmark.state)
+                        }
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    }
                 }
-                .font(.subheadline)
-                .foregroundColor(.secondary)
 
                 Divider()
 
@@ -48,9 +64,11 @@ struct LandmarkDetail: View {
                 Text(landmark.description)
             }
             .padding()
+            .frame(maxWidth: 700)
+            .offset(y: -50)
         }
         .navigationTitle(landmark.name)
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)←MacOSでは利用できない
     }
 }
 
@@ -60,5 +78,6 @@ struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
         LandmarkDetail(landmark: modelData.landmarks[0])
             .environmentObject(modelData)
+            .frame(width: 850, height: 700)
     }
 }
