@@ -15,7 +15,16 @@ struct LandmarkRow: View {
             landmark.image
                 .resizable()//画像をリサイズするために必要
                 .frame(width:50, height:50)//画像サイスの指定
-            Text(landmark.name)
+                .cornerRadius(5)//角の丸さ
+            VStack(alignment: .leading) {
+                Text(landmark.name)
+                    .bold()
+                #if !os(watchOS)
+                Text(landmark.park)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                #endif
+            }
             
             Spacer()//幅いっぱいに表示する際にいい感じにスペースを開けてくれる
             
@@ -24,6 +33,7 @@ struct LandmarkRow: View {
                     .foregroundColor(.yellow)
             }
         }
+        .padding(.vertical, 4)//垂直方向の幅を設定
     }
 }
 
