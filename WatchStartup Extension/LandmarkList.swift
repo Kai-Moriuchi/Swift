@@ -1,8 +1,8 @@
 //
 //  LandmarkList.swift
-//  startup
+//  WatchStartup Extension
 //
-//  Created by Kai on 2021/08/24.
+//  Created by Kai on 2021/09/12.
 //
 
 import SwiftUI
@@ -39,11 +39,5 @@ struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
         LandmarkList()
             .environmentObject(ModelData())
-        /* 複数デバイスでのPreviewを可能にする *//*
-        ForEach([/*"iPhone SE (2nd generation)", */"iPhone XS Max"], id: \.self) { deviceName in
-            LandmarkList()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
-        }*/
     }
 }
